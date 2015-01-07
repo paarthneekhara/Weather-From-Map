@@ -1,0 +1,38 @@
+<html>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="../script/weatherFromMap.js"></script>
+	<script>
+	var polyLineMap;
+	document.addEventListener("DOMContentLoaded", function(event) { 
+  		var map_element = document.getElementById('googleMap');
+		markerMap = createMarkerMap(map_element);
+		polyLineMap = createPolyLineMap(map_element);
+
+	});
+		
+	
+	</script>
+
+	<div>Hi</div>
+	<div id = "googleMap" style="height:200px; width : 500px"></div>
+	<button onclick = "getdistance()">Go</button>
+
+	<script type="text/javascript">
+		function getdistance(){
+			//alert(polyLineMap['polyline'].Distance());
+			//polyLineMap['polyline'].getPath().getAt(0).getCurrentWeather();
+			// for(var i = 0; i< markerMap['markers'].length; i++){
+			// 	var weather = markerMap['markers'][i].getCurrentWeatherAtMarker();
+			// 	alert(JSON.stringify(weather, null, 4));
+			// 	markerMap['markers'][i].setMap(null);
+			// }
+			var weather = polyLineMap['polyline'].GetCurrentWeatherDistance(10);
+			alert(JSON.stringify(weather, null, 4));
+
+		}
+
+	</script>
+
+	
+</html>
