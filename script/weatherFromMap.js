@@ -215,10 +215,12 @@ function GetWeatherData(latitude, longitude, type, custom_url) {
     }
     else{
       var url = custom_url;
-      url += "&lat=";
+      url += "lat=";
       url +=latitude;
       url += "&lon=";
       url += longitude;
+      url += "&cnt=16";
+      url += "&mode=json";
     }
     
     var returnWeather;
