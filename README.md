@@ -21,7 +21,7 @@ Create a new google map with an onclick event handler defined to create a marker
 var markerMap;
 $( document ).ready(function() {
   var map_element = document.getElementById('googleMap');
-  markerMap = createMarkerMap(map_element);
+  markerMap = WeatherFromMap.createMarkerMap(map_element);
 });
 ```
 Create multiple markers on the map, and you may get the weather details of the marker as a JSON object using the following code:
@@ -34,7 +34,7 @@ function getWeather(){
   alert(JSON.stringify(weather, null, 4));
 }
 ```
-To get weather details of positions along a polyline refer to examples/marineWeatherOnShipRoute.html
+To get weather details of positions along a polyline refer to https://github.com/paarthneekhara/Weather-From-Map/blob/master/examples/marineWeatherOnShipRoute.html
 <h2>Methods</h2>
 
 <i>1. createPolyLineMap(map_element : DOM element, map_prop : Object, poly_options : Object)</i>
