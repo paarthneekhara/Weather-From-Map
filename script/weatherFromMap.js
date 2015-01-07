@@ -194,12 +194,12 @@ google.maps.LatLng.prototype.GetForecastAtPoint = function(custom_url){
 }
 
 google.maps.Marker.prototype.GetForecastAtMarker = function(custom_url){
-  return this.position.GetCurrentWeatherAtPoint(custom_url);
+  return this.position.GetForecastAtPoint(custom_url);
 }
 
 
 google.maps.Polyline.prototype.GetForecastAtDistance = function(metres, custom_url){
-  return this.GetPointAtDistance(metres).GetCurrentWeatherAtPoint(custom_url);
+  return this.GetPointAtDistance(metres).GetForecastAtPoint(custom_url);
 }
 
 function GetWeatherData(latitude, longitude, type, custom_url) {
@@ -222,7 +222,7 @@ function GetWeatherData(latitude, longitude, type, custom_url) {
       url += "&cnt=16";
       url += "&mode=json";
     }
-    
+    //alert(url);
     var returnWeather;
     $.ajax({
         type: "POST",
