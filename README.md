@@ -34,7 +34,7 @@ function getWeather(){
   alert(JSON.stringify(weather, null, 4));
 }
 ```
-To get weather details of positions along a polyline refer to examples/marineWeatherOnShipRoute.html
+To get weather details of positions along a polyline refer to https://github.com/paarthneekhara/Weather-From-Map/blob/master/examples/marineWeatherOnShipRoute.html
 <h2>Methods</h2>
 
 <i>1. createPolyLineMap(map_element : DOM element, map_prop : Object, poly_options : Object)</i>
