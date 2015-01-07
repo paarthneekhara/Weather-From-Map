@@ -30,13 +30,13 @@
 
 			// Iterate for each Day
 
-			for(var i = 0; i< days && i < 3; i++){
+			for(var i = 0; i< days && i < 4; i++){
 
 				//Get weather on poly lines at equal intervals
 
 				var weather = polyline.GetForecastAtDistance((i * polyline.Distance())/days);
-				var maxTemp = weather['list'][i]['temp']['max'];
-				var minTemp = weather['list'][i]['temp']['min'];
+				var maxTemp = weather['list'][i]['temp']['max'] - 273;
+				var minTemp = weather['list'][i]['temp']['min'] - 273;
 				var windSpeed = weather['list'][i]['speed'];
 				var ppt = weather['list'][i]['rain'];
 				
@@ -45,6 +45,7 @@
 					'<td>'+windSpeed+'</td>'+
 					'<td>'+ppt+'</td>'+
 					'</tr>') ;
+				
 			}
 
 		}
