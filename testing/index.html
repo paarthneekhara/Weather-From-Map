@@ -6,8 +6,8 @@
 	var polyLineMap;
 	document.addEventListener("DOMContentLoaded", function(event) { 
   		var map_element = document.getElementById('googleMap');
-		markerMap = createMarkerMap(map_element);
-		polyLineMap = createPolyLineMap(map_element);
+		//markerMap = createMarkerMap(map_element);
+		polyLineMap = WeatherFromMap.createPolyLineMap(map_element);
 
 	});
 		
@@ -20,13 +20,7 @@
 
 	<script type="text/javascript">
 		function getdistance(){
-			//alert(polyLineMap['polyline'].Distance());
-			//polyLineMap['polyline'].getPath().getAt(0).getCurrentWeather();
-			// for(var i = 0; i< markerMap['markers'].length; i++){
-			// 	var weather = markerMap['markers'][i].getCurrentWeatherAtMarker();
-			// 	alert(JSON.stringify(weather, null, 4));
-			// 	markerMap['markers'][i].setMap(null);
-			// }
+			
 			var weather = polyLineMap['polyline'].GetForecastAtDistance(10);
 			alert(JSON.stringify(weather, null, 4));
 

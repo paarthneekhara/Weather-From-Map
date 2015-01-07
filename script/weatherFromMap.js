@@ -1,78 +1,82 @@
 
-function createPolyLineMap(map_element, map_prop, poly_options) {
-	if(!map_prop){
-		var mapProp = {
-			center:new google.maps.LatLng(51.508742,-0.120850),
-			zoom:5,
-			mapTypeId:google.maps.MapTypeId.ROADMAP
-		};
-		 var map=new google.maps.Map(map_element,mapProp);
-	}
-	else{
-		 var map=new google.maps.Map(map_element,map_prop);
-	}
-	if(!poly_options){
-		var polyOptions = {
-		    strokeColor: '#000000',
-		    strokeOpacity: 1.0,
-		    strokeWeight: 3
-		};
-		 var polyline = new google.maps.Polyline(polyOptions);
-	}
-	else{
-		 var polyline = new google.maps.Polyline(poly_options);
-	}
-	
-	polyline.setMap(map);
-	google.maps.event.addListener(map, 'click', function(event){
-		var path = polyline.getPath();
-		path.push(event.latLng);
-		var marker = new google.maps.Marker({
-			position: event.latLng,
-			title: '#' + path.getLength(),
-			map: map
-		});
-	});
+ 
 
-	var polyLineMap = {
-		map : map,
-		polyline : polyline
-	}
+var WeatherFromMap = {
+  createPolyLineMap : function(map_element, map_prop, poly_options) {
+    if(!map_prop){
+    	var mapProp = {
+    		center:new google.maps.LatLng(51.508742,-0.120850),
+    		zoom:5,
+    		mapTypeId:google.maps.MapTypeId.ROADMAP
+    	};
+    	 var map=new google.maps.Map(map_element,mapProp);
+    }
+    else{
+    	 var map=new google.maps.Map(map_element,map_prop);
+    }
+    if(!poly_options){
+    	var polyOptions = {
+    	    strokeColor: '#000000',
+    	    strokeOpacity: 1.0,
+    	    strokeWeight: 3
+    	};
+    	 var polyline = new google.maps.Polyline(polyOptions);
+    }
+    else{
+    	 var polyline = new google.maps.Polyline(poly_options);
+    }
 
-	return polyLineMap;
-}
+    polyline.setMap(map);
+    google.maps.event.addListener(map, 'click', function(event){
+    	var path = polyline.getPath();
+    	path.push(event.latLng);
+    	var marker = new google.maps.Marker({
+    		position: event.latLng,
+    		title: '#' + path.getLength(),
+    		map: map
+    	});
+    });
+
+    var polyLineMap = {
+    	map : map,
+    	polyline : polyline
+    }
+
+    return polyLineMap;
+  },
 
 
-function createMarkerMap(map_element, map_prop, poly_options){
-	var markers = [];
-	if(!map_prop){
-		var mapProp = {
-			center:new google.maps.LatLng(51.508742,-0.120850),
-			zoom:5,
-			mapTypeId:google.maps.MapTypeId.ROADMAP
-		};
-		 var map=new google.maps.Map(map_element,mapProp);
-	}
-	else{
-		 var map=new google.maps.Map(map_element,map_prop);
-	}
-	
-	
-	google.maps.event.addListener(map, 'click', function(event){
-		
-		var marker = new google.maps.Marker({
-			position: event.latLng,
-			map: map
-		});
-		markers.push(marker);
-	});
-	var markerMap = {
-		map : map,
-		markers : markers
-	}
+  createMarkerMap : function(map_element, map_prop){
+  	var markers = [];
+  	if(!map_prop){
+  		var mapProp = {
+  			center:new google.maps.LatLng(51.508742,-0.120850),
+  			zoom:5,
+  			mapTypeId:google.maps.MapTypeId.ROADMAP
+  		};
+  		 var map=new google.maps.Map(map_element,mapProp);
+  	}
+  	else{
+  		 var map=new google.maps.Map(map_element,map_prop);
+  	}
+  	
+  	
+  	google.maps.event.addListener(map, 'click', function(event){
+  		
+  		var marker = new google.maps.Marker({
+  			position: event.latLng,
+  			map: map
+  		});
+  		markers.push(marker);
+  	});
+  	var markerMap = {
+  		map : map,
+  		markers : markers
+  	}
 
-	return(markerMap);
-	
+  	return(markerMap);
+  	
+  }
 }
 
 
