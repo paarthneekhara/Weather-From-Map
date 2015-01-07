@@ -1,0 +1,55 @@
+<html>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="../script/weatherFromMap.js"></script>
+	<script>
+		// Make a polyLine Map
+		var polyLineMap;
+		document.addEventListener("DOMContentLoaded", function(event) { 
+		  	var map_element = document.getElementById('googleMap');
+			polyLineMap = createPolyLineMap(map_element);
+		});
+	</script>
+	<h2>Mark the ship route on the map, enter no. of days of thevoyage and press the button to load expected weather of the first 4 days of voyage</h2>
+	<br>
+	<div id = "googleMap" style="height:450px; width : 700px; float  :left"></div>
+	<table id = "weatherTable" border = "1" style = "">
+	</table>
+	<div>Total Days of the Voyage <input type="text" name="days"  id = "days"></div>
+	<button onclick = "getRouteWeather()">Get Weather on Route</button>
+	<div>Note that loading the weather takes time.. Be patient :) </div>
+	
+	<script type="text/javascript">
+		// Get weather on route 
+		function getRouteWeather(){
+			
+			var days = document.getElementById("days").value;
+			var polyline = polyLineMap['polyline'];
+			
+			$("#weatherTable").append('<tr><td>MaxTemp</td><td>MinTemp</td><td>WindSpedd</td><td>Rain</td></tr>')
+
+			// Iterate for each Day
+
+			for(var i = 0; i< days && i < 3; i++){
+
+				//Get weather on poly lines at equal intervals
+
+				var weather = polyline.GetForecastAtDistance((i * polyline.Distance())/days);
+				var maxTemp = weather['list'][i]['temp']['max'];
+				var minTemp = weather['list'][i]['temp']['min'];
+				var windSpeed = weather['list'][i]['speed'];
+				var ppt = weather['list'][i]['rain'];
+				
+				$("#weatherTable").append('<tr><td>'+maxTemp+'</td>'+
+					'<td>'+minTemp+'</td>'+
+					'<td>'+windSpeed+'</td>'+
+					'<td>'+ppt+'</td>'+
+					'</tr>') ;
+			}
+
+		}
+
+	</script>
+
+	
+</html>
