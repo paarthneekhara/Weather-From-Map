@@ -14,7 +14,7 @@ Add the following in the ```<head>``` tag of html
 Create a google maps container and a button to test using:
 ```html
 <div id = "googleMap" style="height: 450px; width: 700px;"></div>
-<button onclick = "getWeather()"></button>
+<button onclick = "getWeather()">Go!!</button>
 ```
 Create a new google map with an onclick event handler defined to create a marker (you may create a custom map yourself, and use the functions for map layers.) 
 ```javascript
