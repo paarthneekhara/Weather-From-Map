@@ -158,30 +158,69 @@ google.maps.Polyline.prototype.GetPointsAtDistance = function(metres) {
 
 //******************************************** GET WEATHER DATA *****************************************************
 
-google.maps.LatLng.prototype.GetCurrentWeatherAtPoint = function(){
+//**************************************************** current weather *********************************************************
+
+google.maps.LatLng.prototype.GetCurrentWeatherAtPoint = function(custom_url){
   var lat = this.lat();
   var lon = this.lng();
-  return GetWeatherData(lat, lon);
+  if(!custom_url){
+    return GetWeatherData(lat, lon, 'weather');
+  }
+  else{
+    return GetWeatherData(lat, lon, 'weather', custom_url)
+  }
 }
 
-google.maps.Marker.prototype.GetCurrentWeatherAtMarker = function(){
-	return this.position.GetCurrentWeatherAtPoint();
+google.maps.Marker.prototype.GetCurrentWeatherAtMarker = function(custom_url){
+	return this.position.GetCurrentWeatherAtPoint(custom_url);
 }
 
 
-google.maps.Polyline.prototype.GetCurrentWeatherDistance = function(metres){
-  return this.GetPointAtDistance(metres).GetCurrentWeatherAtPoint();
+google.maps.Polyline.prototype.GetCurrentWeatherAtDistance = function(metres, custom_url){
+  return this.GetPointAtDistance(metres).GetCurrentWeatherAtPoint(custom_url);
 }
 
-function GetWeatherData(latitude, longitude) {
+//**************************************************** weather forecast ********************************************************
+
+google.maps.LatLng.prototype.GetForecastAtPoint = function(custom_url){
+  var lat = this.lat();
+  var lon = this.lng();
+  if(!custom_url){
+    return GetWeatherData(lat, lon, 'forecast/daily');
+  }
+  else{
+    return GetWeatherData(lat, lon, 'forecast/daily', custom_url)
+  }
+}
+
+google.maps.Marker.prototype.GetForecastAtMarker = function(custom_url){
+  return this.position.GetCurrentWeatherAtPoint(custom_url);
+}
+
+
+google.maps.Polyline.prototype.GetForecastAtDistance = function(metres, custom_url){
+  return this.GetPointAtDistance(metres).GetCurrentWeatherAtPoint(custom_url);
+}
+
+function GetWeatherData(latitude, longitude, type, custom_url) {
     var temperature = 0;
     //var dfd = $.Deferred();
-    var url = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=";
-    url += latitude;
-    url += "&lon=";
-    url += longitude;
-    url += "&cnt=16";
-    url += "&mode=json";
+    if(!custom_url){
+      var url = "http://api.openweathermap.org/data/2.5/" + type + "?lat=";
+      url += latitude;
+      url += "&lon=";
+      url += longitude;
+      url += "&cnt=16";
+      url += "&mode=json";
+    }
+    else{
+      var url = custom_url;
+      url += "&lat=";
+      url +=latitude;
+      url += "&lon=";
+      url += longitude;
+    }
+    
     var returnWeather;
     $.ajax({
         type: "POST",
