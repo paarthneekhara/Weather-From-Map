@@ -30,7 +30,7 @@ function getWeather(){
   //get a selected marker from the markerMap object
   var marker = markerMap['markers'][0];
   var weather = marker.GetCurrentWeatherAtMarker();
-  //weather is JSON object of current weather at current point. TO know more about it visit www.openweathermap.org
+  //weather is a JSON object of current weather at the given point. To know more about it visit www.openweathermap.org
   alert(JSON.stringify(weather, null, 4));
 }
 ```
