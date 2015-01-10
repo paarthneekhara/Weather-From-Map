@@ -1,17 +1,17 @@
 # Weather-From-Map
 A google maps api extension to get weather for selected points/path using the openweather api.
 
-Weather-from-maps is a simple java script plugin that provides a set of fuctions to get weather details from google maps layers like markers, path etc using openweather api.
+Weather-from-maps is a simple java script plugin that provides a set of fuctions to get weather details from google maps layers like markers, path etc using the openweather api.
 
 <h2>Basic Usage</h2>
 
-Add the following in the ```<head>``` tag of html
+Add the following in the ```<head>``` tag of your webpage
 ```javascript
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="PATH_TO_FILE/script/weatherFromMap.js"></script>
 ```
-Create a google maps container and a button to test using:
+Create a google map container and a button to test it, using:
 ```html
 <div id = "googleMap" style="height: 450px; width: 700px;"></div>
 <button onclick = "getWeather()">Go!!</button>
