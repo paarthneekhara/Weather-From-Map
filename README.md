@@ -9,7 +9,7 @@ Add the following in the ```<head>``` tag of your webpage
 ```javascript
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="PATH_TO_FILE/script/weatherFromMap.js"></script>
+<script src="https://raw.githubusercontent.com/paarthneekhara/Weather-From-Map/master/script/weatherFromMap.js"></script>
 ```
 Create a google map container and a button to test it, using:
 ```html
